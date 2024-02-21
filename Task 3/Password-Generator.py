@@ -1,4 +1,5 @@
 import string, random
+from termcolor import colored     # pip install termcolor
 
 print('''
      _____                             _    _____                     _              
@@ -8,12 +9,11 @@ print('''
  
 # Getting password length
 length = int(input("\nSpecify the Password length: "))
- 
-print("\nChoose character set for password : \n1. Digits \n2. Letters \n3. Special characters \n4. Exit")
- 
 characterList = ""
 password = [] 
- 
+
+print("\nChoose character set for password : \n1. Digits \n2. Letters \n3. Special characters \n4. Exit")
+
 while(True):
     choice = int(input("--->  ")) # Getting character set for the password
     if(choice == 1):
@@ -26,9 +26,10 @@ while(True):
         break
     else:
         print("Error! Enter a valid option.")
- 
+
+# This performs Password Generation 
 for i in range(length):
-    passchar = random.choice(characterList)
+    passchar = random.choice(characterList)   
     password.append(passchar)
 
-print(f"\nGENERATED PASSWORD: {"".join(password)}")
+print(colored(f"\nGENERATED PASSWORD: ", attrs=["bold"]),colored(f"{"".join(password)}", "red", attrs=["bold"]))
