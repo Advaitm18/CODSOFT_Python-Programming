@@ -6,8 +6,7 @@ tasks = []
 
 def add_task(task,remark):
     tasks.append({"task":task, "completed":False, "remark":remark})
-    print("Task Added Successfully!!!")
-    print(tasks)
+    print(colored("Task Added Successfully!!!","red"))
     
 def list_tasks():
     print(colored(datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold"]))
@@ -16,20 +15,19 @@ def list_tasks():
             status = "✓"
         else:
             status = " "
-        
         print(f"{index}. [{status}] {task['task']} {task['remark']}")
     print() 
 
 def delete_task(choice):
     list_tasks()
     if len(tasks) == 0:
-        print("No Task To Delete ")
+        print(colored("No Task To Delete ","red"))
     else:
         if 0 < choice <= len(tasks):
             del tasks[choice-1]
-            print("Task Deleted Successfully.")
+            print(colored("Task Deleted Successfully.","red"))
         else:
-            print("Invaild Task Number")
+            print("---> Invaild Task Number <---")
 
 '''
 def output(): 
@@ -45,13 +43,13 @@ def output():
 def mark_completed(index):
     if 1<= index <= len(tasks):
         tasks[index-1]["completed"] = True
-        print("Task marked as Complete!!!")
+        print(colored("Task marked as Complete!!!", "red"))
     else:
-        print("Invaild Task Index")
+        print("---> Invaild Task Index <---")
 
 
 while True:
-    print("\n1. Add The Task \n2. Delete The Task \n3. Delete All The Tasks \n4. Update The Task Status \n5. View The Task Table \n6. Exit")
+    print("\n1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit")
     option = int(input("---> "))
     print("-------------------------------------------------------------------------------------------------------------------------------")
 
@@ -65,19 +63,23 @@ while True:
             remark = " "
         else:
             print("---> Invaild Input <---")
-            
         add_task(task,remark)
+        
     elif option == 2:
         choice = int(input("Enter the Task Number To Delete: "))
         delete_task(choice)
-    elif option == 4:
+        
+    elif option == 3:
         list_tasks()
         index = int(input("Enter the Task Number: "))
         mark_completed(index)
-    elif option == 5:
+        
+    elif option == 4:
         list_tasks()
-    elif option == 6:
+        
+    elif option == 5:
         break
+        
     else:
         print("---> Invaild Option <---")
         
