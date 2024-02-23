@@ -49,6 +49,7 @@ def mark_completed(index):
 
 
 while True:
+    print("To-Do List Operations: ")
     print("\n1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit")
     option = int(input("---> "))
     print("-------------------------------------------------------------------------------------------------------------------------------")
