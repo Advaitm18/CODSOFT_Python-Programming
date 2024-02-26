@@ -25,20 +25,9 @@ def delete_task(choice):
     else:
         if 0 < choice <= len(tasks):
             del tasks[choice-1]
-            print(colored("Task Deleted Successfully.","red"))
+            print(colored("Task Deleted Successfully!!!","red"))
         else:
             print("---> Invaild Task Number <---")
-
-'''
-def output(): 
-   
-    header = [colored("To-Do Tasks", attrs=["bold"])]
-    
-    data = [
-        [list_tasks()]
-    ]
-    tt.print(data, header=header, padding=(0, 1), alignment="c")
-'''
 
 def mark_completed(index):
     if 1<= index <= len(tasks):
@@ -84,4 +73,3 @@ while True:
     else:
         print("---> Invaild Option <---")
         
-    
