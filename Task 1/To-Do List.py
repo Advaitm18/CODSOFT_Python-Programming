@@ -1,23 +1,27 @@
-import termtables as tt
 from datetime import datetime, date
 from termcolor import colored
 
-tasks = []
+# Empty List to append the entered data
+tasks = [] 
 
+# This function Enters the data in the list(tasks) 
 def add_task(task,remark):
     tasks.append({"task":task, "completed":False, "remark":remark})
     print(colored("Task Added Successfully!!!","red"))
-    
+
+# This function Display the List of Tasks
 def list_tasks():
-    print(colored(datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold"]))
+    print(colored("TO-DO TASKS LIST", "green", attrs=["bold"]))
+    print(colored(datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold","blink"]))
     for index, task in enumerate(tasks, start=1):
         if task["completed"]:
             status = "✓"
         else:
             status = " "
-        print(f"{index}. [{status}] {task['task']} {task['remark']}")
-    print() 
+        print(f"{index}. [{status}] {task['task']: <35} *{task['remark']}*")
+    print()
 
+# This function deletes the entered task from the List
 def delete_task(choice):
     list_tasks()
     if len(tasks) == 0:
@@ -29,6 +33,7 @@ def delete_task(choice):
         else:
             print("---> Invaild Task Number <---")
 
+# This function changes the Status of the Task
 def mark_completed(index):
     if 1<= index <= len(tasks):
         tasks[index-1]["completed"] = True
@@ -38,8 +43,8 @@ def mark_completed(index):
 
 
 while True:
-    print("To-Do List Operations: ")
-    print("\n1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit")
+    print("\nTo-Do List Operations: ")
+    print("1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit")
     option = int(input("---> "))
     print("-------------------------------------------------------------------------------------------------------------------------------")
 
@@ -48,14 +53,16 @@ while True:
         print("Do you want to add remark to the Task (Y/N)?")
         opt = input("---> ").upper()
         if opt == "Y":
-            remark = input(f"Enter the Remark for {task} task: ")
+            remark = input(f"Enter the Remark for '{task}' task: ")
         elif opt == "N":
             remark = " "
         else:
             print("---> Invaild Input <---")
         add_task(task,remark)
+
         
     elif option == 2:
+        list_tasks()
         choice = int(input("Enter the Task Number To Delete: "))
         delete_task(choice)
         
@@ -66,10 +73,10 @@ while True:
         
     elif option == 4:
         list_tasks()
+        print("-------------------------------------------------------------------------------------------------------------------------------")
         
     elif option == 5:
         break
         
     else:
         print("---> Invaild Option <---")
-        
