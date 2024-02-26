@@ -1,87 +1,88 @@
 import re
 from datetime import datetime
+from termcolor import colored 
 
+# Empty Contact list to Append entered data 
 Contact = []
 
-# To Add the entered data in Contact List
+# This function is used to append entered details in the list(Contact)
 def add_ContactDetail(name, phno, email, address):
-    Contact.append({"Name":name, "Phone Number":phno, "Email-ID":email, "Address":address})
-    print("Contact Added Successfully!!!")
-    print(Contact)
+    Contact.append({"Name": name, "Phone Number": phno, "Email-ID": email, "Address": address})
+    print(colored("Contact Added Successfully!!!","green"))
 
-# To Display the data in "Contact_Book.txt" file  
+# This function used to display the Contact-List
 def list_contact():
-    print(datetime.now().strftime('%B, %d %Y  %H:%M'))
+    print(colored("CONTACT BOOK","blue",attrs = ["bold"]))
+    print(colored("\n" + datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold","blink"]))
     for index, contact in enumerate(Contact, start=1):
-        print(f"{index}. {contact['contact']} {contact['phno']} {contact['email']} \n{contact['address']}")
-    print() 
+        print(f"\n{index}. {contact['Name']: <30} {contact['Phone Number']: <15} {contact['Email-ID']} \n{contact['Address']: >20}")
+    print()
 
-            
-# To valided the entered Phone Number
-def isVaild_phno(phno):     
-    pattern = re.compile("[6-9][0-9]{9}")
-    if re.fullmatch(pattern, phno):
-        print("Vaild Phone Number !!")
+# This function is used to validate the entered Phone Number 
+def isVaild_phno(phno):
+    if re.match("^[6-9][0-9]{9}$", phno):
+        print(colored("Valid Phone Number !!", "green"))
     else:
-        print("Entered Phone No. is Invalid!! ")
+        print(colored("Entered Phone No. is Invalid!!", "red"))
         
-# To valided the entered Emai-ID
+# This function is used to validate the entered Email-ID
 def isVaild_email(email):
-    pattern = re.compile('([A-Za-z0-9]+[._-])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
-    if re.fullmatch(pattern, email):
-        print("Vaild Email-Id !!")
+    if re.match(r'^([A-Za-z0-9]+[._-])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,})+$', email):
+        print(colored("Valid Email-Id !!", "green"))
     else:
-        print(colored("Entered Email-ID is Invaild!! ","red"))
+        print(colored("Entered Email-ID is Invalid!!", "red"))
 
-# To Delete Contact (Option (2))
+# This function used to delete the entered Contact Details
 def delete_contact(choice):
-    list_contact()
-    if len(Contact) == 0:
-        print("No Contact To Delete ")
+    if not Contact:
+        print(colored("No Contact To Delete. ","red"))
     else:
         if 0 < choice <= len(Contact):
             del Contact[choice-1]
-            print("Task Deleted Successfully.")
+            print(colored("Contact Deleted Successfully!!! ","green"))
         else:
-            print("---> Invaild Contact Number <---")
-            
-# To View Contact_Book (Option (3))
-def view_contact():
-    file = open("Contact_Book.txt")
-    content = file.read()
-    print(content)
-    file.close()
+            print("---> Invalid Contact Number <---")
+
+# This function used to create .txt file of Contact Details
+def create_contactbook():
+    with open("Contact-Book.txt", "a") as file:
+        file.write(datetime.now().strftime('%B, %d %Y  %H:%M'))
+        for index, contact in enumerate(Contact, start=1):
+            file.write(f"\n{index}. {contact['Name']: <30} {contact['Phone Number']: <15} {contact['Email-ID']} \n{contact['Address']: >20}")
+        file.write('\n')
 
 while True:
-    print(("CONTACT BOOK").center(50))
-    print("1. Enter the Contact Details 2.Delete the Contact 3.View Contact-Book 4.Exit")
+    print("CONTACT BOOK".center(50))
+    print("\n1. Enter the Contact Details \n2. Delete the Contact \n3. View Contact-Book \n4. Create Contact-Book File \n5. Exit")
 
     option = int(input("--->  "))
+    print("-------------------------------------------------------------------------------------------------------------------------------")
     if option == 1:
         name = input("Enter the Name: ")
-        phno = input("Enter the Mobile Number: ")
+        phno = input("Enter the Contact No. ")
         isVaild_phno(phno)
         email = input("Enter the Email-ID: ")
         isVaild_email(email)
         address = input("Enter the Address: ")
 
         add_ContactDetail(name, phno, email, address)
-        
-        #display = f"{('{: <25}'.format(name))} {('{: <15}'.format(phno))} {email} \n{address}"
-        file = open("Contact_Book.txt","a")
-        file.write(list_contact())
-        file.close()
-        
+    
     elif option == 2:
+        list_contact()
         choice = int(input("Enter the Contact Index Number To Delete: "))
         delete_contact(choice)
-        
-    elif option == 3:
-        view_contact(choice)
-        
+    
+    elif option == 3:    
+        list_contact()
+        print("-------------------------------------------------------------------------------------------------------------------------------")
+
     elif option == 4:
+        create_contactbook()
+        
+    elif option == 5:
         break
+
     else:
-        print("---> Invaild Input <---")
+        print("---> Invalid Input <---")
 
 
