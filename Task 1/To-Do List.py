@@ -4,12 +4,12 @@ from termcolor import colored
 # Empty List to append the entered data
 tasks = [] 
 
-# This function Enters the data in the list(tasks) 
+# This function is used to Enter the data in the list(tasks) 
 def add_task(task,remark):
     tasks.append({"task":task, "completed":False, "remark":remark})
     print(colored("Task Added Successfully!!!","red"))
 
-# This function Display the List of Tasks
+# This function is used to Display the List of Tasks
 def list_tasks():
     print(colored("TO-DO TASKS LIST", "green", attrs=["bold"]))
     print(colored(datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold","blink"]))
@@ -21,7 +21,7 @@ def list_tasks():
         print(f"{index}. [{status}] {task['task']: <35} *{task['remark']}*")
     print()
 
-# This function deletes the entered task from the List
+# This function is used to Delete the entered task from the List
 def delete_task(choice):
     list_tasks()
     if len(tasks) == 0:
@@ -33,14 +33,13 @@ def delete_task(choice):
         else:
             print("---> Invaild Task Number <---")
 
-# This function changes the Status of the Task
+# This function is used to Change the Status of the Task
 def mark_completed(index):
     if 1<= index <= len(tasks):
         tasks[index-1]["completed"] = True
         print(colored("Task marked as Complete!!!", "red"))
     else:
         print("---> Invaild Task Index <---")
-
 
 while True:
     print("\nTo-Do List Operations: ")
@@ -59,7 +58,6 @@ while True:
         else:
             print("---> Invaild Input <---")
         add_task(task,remark)
-
         
     elif option == 2:
         list_tasks()
