@@ -1,4 +1,5 @@
-import termtables
+from termcolor import colored              # !pip install termcolor
+import termtables                         # !pip install termtables
 
 print('''
       _____      _            _       _          
@@ -35,7 +36,7 @@ def tabledisplay(op,result):   # This function display the Operational Output
     termtables.print(my_table,header=headers,padding=(0,1),alignment="cc")
     
 while True:
-    print("\nSelect Arithmetic Operation: ")
+    print(colored("\nSelect The Arithmetic Operation: ", attrs=["bold"]))
     print("1. Addition")
     print("2. Subtraction")
     print("3. Multiplication")
@@ -77,9 +78,9 @@ while True:
           
     print("Do you want to continue y/n ??")
     choice= input("---> ").upper()
-    if choice == "N":
+    if choice == "Y":
         continue
-    elif choice == "Y":
+    elif choice == "N":
         break
     else:
         print("Invalid input!! ")
