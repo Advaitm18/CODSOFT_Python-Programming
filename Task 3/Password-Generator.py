@@ -1,5 +1,5 @@
 import string, random
-from termcolor import colored     # pip install termcolor
+from termcolor import colored     # !pip install termcolor
 
 print('''
      _____                             _    _____                     _              
