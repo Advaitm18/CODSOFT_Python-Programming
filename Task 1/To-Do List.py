@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from termcolor import colored
+from termcolor import colored                  # !pip install termcolor
 
 # Empty List to append the entered data
 tasks = [] 
@@ -42,8 +42,8 @@ def mark_completed(index):
         print("---> Invaild Task Index <---")
 
 while True:
-    print("\nTo-Do List Operations: ")
-    print("1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit")
+    print(colored("\nTo-Do List Operations: ", attrs=["bold"]))
+    print("1. Add The Task \n2. Delete The Task \n3. Update The Task Status \n4. View The Task Table \n5. Exit\n")
     option = int(input("---> "))
     print("-------------------------------------------------------------------------------------------------------------------------------")
 
