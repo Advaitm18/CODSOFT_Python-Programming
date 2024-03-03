@@ -1,7 +1,7 @@
 from random import choice         # In-Built Module:- Random.choice()
 import Display                    # User-Defined Module 
-import termtables as tt           # pip install termtables
-from termcolor import colored     # pip install termcolor
+import termtables as tt           # !pip install termtables
+from termcolor import colored     # !pip install termcolor
 
 print('''              _               
          __      _____| | ___ ___  _ __ ___   ___ 
@@ -73,4 +73,3 @@ elif(user_score<comp_score):
     print(colored("\nYou have lost, "+"Better Luck Next time! \U0001F605", "green", attrs=["bold"]))
 else:
     print(colored("\nIt is a tie!"+"\U0001F611", "green", attrs=["bold"]))
-
