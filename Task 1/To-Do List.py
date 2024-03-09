@@ -49,10 +49,10 @@ while True:
 
     if option == 1:
         task = input("Enter the Task: ")
-        print("Do you want to add remark to the Task (Y/N)?")
+        print("Do you want to assign Due-Date to the Task (Y/N)?")
         opt = input("---> ").upper()
         if opt == "Y":
-            remark = input(f"Enter the Remark for '{task}' task: ")
+            remark = input(f"Enter the Due-Date for '{task}' task: ")
         elif opt == "N":
             remark = " "
         else:
