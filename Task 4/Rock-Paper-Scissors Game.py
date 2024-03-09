@@ -1,5 +1,5 @@
 from random import choice         # In-Built Module:- Random.choice()
-from Display import *             # User-Defined Module 
+import Display                    # User-Defined Module 
 import termtables as tt           # !pip install termtables
 from termcolor import colored     # !pip install termcolor
 
