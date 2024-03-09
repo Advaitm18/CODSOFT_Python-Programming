@@ -1,5 +1,5 @@
 from random import choice         # In-Built Module:- Random.choice()
-import Display                    # User-Defined Module 
+from Display import *             # User-Defined Module 
 import termtables as tt           # !pip install termtables
 from termcolor import colored     # !pip install termcolor
 
@@ -8,9 +8,7 @@ print('''              _
          \ \ /\ / / _ \ |/ __/ _ \| '_ ` _ \ / _ \ 
           \ V  V /  __/ | (_| (_) | | | | | |  __/
            \_/\_/ \___|_|\___\___/|_| |_| |_|\___|                                            
-''')
-
-print("**************************************************************")
+    ''')
 
 user_score = 0
 comp_score = 0
@@ -18,7 +16,8 @@ comp_score = 0
 
 while True:
     # User Side operation
-    user_choice = input("Choose any one Option:-     Rock(R)     Paper(P)     Scissors(S)     Exit(E) \n --->  ").upper()  
+    user_choice = input("Choose any one Option:- Rock(R)    Paper(P)    Scissors(S)    Exit(E) \n --->  ").upper()  
+    print("********************************************************************************")
     if user_choice == 'E':
         break
     elif user_choice == 'R':
