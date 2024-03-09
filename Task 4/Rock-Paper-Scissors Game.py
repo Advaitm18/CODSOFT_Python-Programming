@@ -18,7 +18,7 @@ comp_score = 0
 
 while True:
     # User Side operation
-    user_choice = input(" Enter:-     Rock(R)     Paper(P)     Scissors(S)     Exit(E) \n --->  ").upper()  
+    user_choice = input("Choose any one Option:-     Rock(R)     Paper(P)     Scissors(S)     Exit(E) \n --->  ").upper()  
     if user_choice == 'E':
         break
     elif user_choice == 'R':
