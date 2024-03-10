@@ -9,7 +9,6 @@ Contact = []
 def add_ContactDetail(name, phno, email, address):
     Contact.append({"Name": name, "Phone Number": phno, "Email-ID": email, "Address": address})
     print(colored("Contact Added Successfully !!!","green"))
-    print(Contact)
     
 # This function used to display the Contact-List
 def list_contact():
