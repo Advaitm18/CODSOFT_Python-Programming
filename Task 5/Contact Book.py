@@ -14,8 +14,9 @@ def add_ContactDetail(name, phno, email, address):
 def list_contact():
     print(colored("CONTACT BOOK DETAILS","blue",attrs = ["bold"]))
     print(colored("\n" + datetime.now().strftime('%B, %d %Y  %H:%M'),attrs=["bold","blink"]))
+    
     for index, contact in enumerate(Contact, start=1):
-        print(f"\n{index}. {contact['Name']: <30} {contact['Phone Number']: <15} {contact['Email-ID']: <30} {contact['Address']}")
+        print(f"\n{index}. {contact['Name']: <25} {contact['Phone Number']: <15} {contact['Email-ID']: <30} {contact['Address']}")
     print()
 
 # This function is used to validate the entered Phone Number 
@@ -43,7 +44,7 @@ def delete_contact(choice):
         else:
             print("---> Invalid Contact Number <---")
             
-# This function used to delete all the Contact Details              
+# This function used to delete all the Contact Details  
 def delete_all():
     return Contact.clear()
     
@@ -52,10 +53,16 @@ def search_contact(name):
     temp = []
     check = -1
     for i in range(len(Contact)):
-        if name == Contact[i][1]:
+        if name == Contact[i]['Name']:
             check = i
             temp.append(Contact[i])
-  
+            print(colored("\nContact Details", "blue", attrs=["bold"]))
+            print(f"\n{temp[0]['Name']: <25} {temp[0]['Phone Number']: <15}{temp[0]['Email-ID']: <30} {temp[0]['Address']}")
+        elif name != Contact[i]['Name']:
+            print("---> Contact Name doesn't exist <---")
+        else:
+            print("---> Contact Name doesn't exist <---")
+    
 # This function used to create .txt file of Contact Details
 def create_contactbook():
     print(f"File Path: {os.getcwd()}")
@@ -75,12 +82,12 @@ while True:
     print("-------------------------------------------------------------------------------------------------------------------------------")
     if option == 1:
         print("Enter Contact Details in the following order: ")
-        name = input("Name: ")
+        name = (input("Name: ").title())
         phno = input("Phone No. ")
         isVaild_phno(phno)
-        email = input("Email-ID: ")
+        email = (input("Email-ID: ").lower())
         isVaild_email(email)
-        address = input("Current Address: ")
+        address = (input("Current Address: ").title())
 
         add_ContactDetail(name, phno, email, address)
     
@@ -93,8 +100,9 @@ while True:
         delete_all()
         
     elif option == 4:
-        name = input("Please enter the category of the contact you wish to search: ")
+        name = (input("Please enter the name of the contact you wish to search: ").title())
         search_contact(name)
+        print("-------------------------------------------------------------------------------------------------------------------------------")
     
     elif option == 5:    
         list_contact()
@@ -104,7 +112,6 @@ while True:
         create_contactbook()
         
     elif option == 7:
-        print("Thank you for using Contact Book Application")
         break
 
     else:
