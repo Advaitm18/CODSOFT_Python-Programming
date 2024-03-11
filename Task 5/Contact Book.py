@@ -43,6 +43,7 @@ def delete_contact(choice):
         else:
             print("---> Invalid Contact Number <---")
             
+# This function used to delete all the Contact Details              
 def delete_all():
     return Contact.clear()
     
